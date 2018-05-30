@@ -1,0 +1,3 @@
+1483728884548	Extract method 'computeMovieAmount'
+1483728952889	Move method 'computeMovieAmount'
+1483728984705	Rename local variable 'thisAmount'

@@ -1,0 +1,55 @@
+import java.util.HashMap;
+
+public class MapAnd2DArrayProblems {
+	
+	/**
+	 * Update the given array by increasing each item
+	 * by it's row's index value.
+	 * 
+	 * For example, the array 
+	 * {{0, 1},
+	 *  {2, 3}}
+	 *  
+	 *  would become:
+	 *  
+	 *  {{0, 1},
+	 *   {3, 4}}
+	 *   
+	 * The items on the first row don't change, as the index
+	 * for that row is zero. The items on the second row are
+	 * increased by 1, as the index of that row is one.
+	 *   
+	 * Example #2:
+	 * 
+	 * {{1, 2, 3, 4, 5},
+	 * 	{0, 0, 0, 0, 0},
+	 *  {1, 1, 1, 1, 1}}
+	 *  
+	 *  would become:
+	 *  
+	 * {{1, 2, 3, 4, 5},
+	 * 	{1, 1, 1, 1, 1},
+	 *  {3, 3, 3, 3, 3}}
+	 *  
+	 * @param data - The data array to update
+	 */
+	public static void increaseByRowIndex(int[][] data) {
+
+	}
+	
+	/**
+	 * Given an array of characters, determine with characters have been seen 
+	 * three or more times, and return a HashMap containing each character
+	 * and indicating if the character was seen 3 or more times.
+	 * 
+	 * For full credit on this problem, you may use ONE ONE FOR LOOP. You may use 
+	 * as many HashMaps as you would like.
+	 * 
+	 * @param grades
+	 * @return A HashMap including all characters seen, with a true/false value. True 
+	 * if the character was seen 3 or more times, false otherwise.
+	 */
+	public static HashMap<Character, Boolean> seen3Times(char[] characters) {
+		return null;
+	}
+}

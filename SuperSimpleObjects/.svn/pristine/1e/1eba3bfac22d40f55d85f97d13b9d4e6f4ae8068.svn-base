@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+
+public class StudentAssignments {
+	private String name;
+	private ArrayList<String> stringArrayList = new ArrayList<String>();
+	private ArrayList<Double> intArrayList = new ArrayList<Double>();
+
+	public StudentAssignments(String name) {
+		this.name = name;
+		this.stringArrayList = new ArrayList<String>();
+		this.intArrayList = new ArrayList<Double>();
+	}
+
+	public StudentAssignments() {
+		this.name = "Studenty McStudenton";
+		this.stringArrayList = new ArrayList<String>();
+		this.intArrayList = new ArrayList<Double>();
+	}
+
+	public void addAssignment(String nameOfAssignment, double score) {
+		this.stringArrayList.add(nameOfAssignment);
+		this.intArrayList.add(score);
+	}
+
+	public void printGradeReport() {
+		System.out.println(this.name);
+		for (int i = 0; i < this.stringArrayList.size(); i++) {
+			System.out.println(this.stringArrayList.get(i) + " - " + this.intArrayList.get(i));
+		}
+	}
+}

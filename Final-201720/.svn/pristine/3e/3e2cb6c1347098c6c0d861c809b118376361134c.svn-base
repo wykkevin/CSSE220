@@ -1,0 +1,27 @@
+package finalQuestion;
+
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+
+/**
+ * Draws rectangles designed to detect overlaps
+ * 
+ * You can modify this class
+ * 
+ * @author hewner
+ *
+ */
+public class IntersectingRect extends IntersectingShape {
+
+	private Rectangle2D rect;
+
+	public IntersectingRect(int x, int y) {
+		rect = new Rectangle2D.Double(x, y, WIDTH, HEIGHT);
+	}
+
+	@Override
+	public Shape getShape() {
+		return rect;
+	}
+
+}

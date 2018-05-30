@@ -1,0 +1,74 @@
+package linearLightsOut;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class PlayGameActionListener implements ActionListener {
+
+	private ArrayList<JButton> mybuttons;
+	private JButton currentButton;
+	private int totalNumber;
+	private int index = 0;
+
+	public PlayGameActionListener(ArrayList<JButton> buttons, JButton currentButton, int number) {
+		this.mybuttons = buttons;
+		this.currentButton = currentButton;
+		this.totalNumber = number;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (this.currentButton == this.mybuttons.get(0)) {
+			for (int j = 0; j < 2; j++) {
+				reverse(this.mybuttons.get(j));
+			}
+			win();
+		} else if (this.currentButton == this.mybuttons.get(this.totalNumber - 1)) {
+			for (int j = 0; j < 2; j++) {
+				reverse(this.mybuttons.get(j + this.totalNumber - 2));
+			}
+			win();
+		} else {
+			for (int i = 1; i < this.mybuttons.size() - 1; i++) {
+				if (this.currentButton == this.mybuttons.get(i)) {
+					this.index = i;
+				}
+			}
+			if (this.index != 0) {
+				for (int j = 0; j < 3; j++) {
+					reverse(this.mybuttons.get(j + this.index - 1));
+				}
+			}
+			win();
+		}
+	}
+
+	public void reverse(JButton button) {
+		if (button.getText().equals("X")) {
+			button.setText("O");
+		} else {
+			button.setText("X");
+		}
+	}
+
+	public void win() {
+		Boolean isWin = true;
+		for (int i = 0; i < this.mybuttons.size() - 1; i++) {
+			if (!this.mybuttons.get(i).getText().equals(this.mybuttons.get(i + 1).getText())) {
+				isWin = false;
+			}
+		}
+		if (isWin == true) {
+			JFrame newFrame = new JFrame();
+			newFrame.setTitle("You win!");
+			JButton newButton = new JButton("You win!");
+			newFrame.add(newButton);
+			newFrame.pack();
+			newFrame.setVisible(true);
+		}
+	}
+}

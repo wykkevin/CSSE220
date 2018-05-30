@@ -1,0 +1,71 @@
+package ballworlds;
+
+import java.awt.Color;
+import java.awt.geom.Point2D;
+
+import util.Random;
+
+/**
+ * 
+ * A Pulsar is a ball that appears on the screen and smoothly varies from white
+ * to black and back again, repeatedly. It should appear in a random location
+ * with any reasonable size.
+ *
+ * @author Emma Oswood. Created Jan 19, 2017.
+ */
+public class Pulsar extends Ball {
+	private int color=255;
+	private boolean isAdding;
+
+	public Pulsar(BallEnvironment world) {
+		// TODO Auto-generated constructor stub.
+		super(world);
+		// Sets random position of ball.
+		int yRange = (int) this.getWorld().getSize().getHeight();
+		int xRange = (int) this.getWorld().getSize().getWidth();
+		Point2D centerPoint = new Point2D.Double(Random.randRange(0, xRange), Random.randRange(0, yRange));
+		this.setCenterPoint(centerPoint);
+		// Sets initial color fields
+		this.isAdding = false;
+		this.updateColor();
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub.
+		float[] newColor = Color.RGBtoHSB(this.color, this.color, this.color, null);
+		return Color.getHSBColor(newColor[0], newColor[1], newColor[2]);
+	}
+
+	@Override
+	public void updatePosition() {
+		// DONE Auto-generated method stub.
+		// Does nothing for pulsar
+	}
+
+	@Override
+	public void updateSize() {
+		// DONE Auto-generated method stub.
+		// Does nothing for pulsar
+	}
+
+	@Override
+	public void updateColor() {
+		// TODO Auto-generated method stub.
+		if (!this.isAdding) {
+			this.color -= 1;
+			if (this.color == 0) this.isAdding =true;
+		}
+		if (this.isAdding) {
+			this.color += 1;
+			if (this.color == 255) this.isAdding = false;
+		}
+	}
+
+	@Override
+	public double getDiameter() {
+		// DONE Auto-generated method stub.
+		return 40;
+	}
+
+}

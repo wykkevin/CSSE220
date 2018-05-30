@@ -1,0 +1,19 @@
+
+public class BankAccountMain {
+
+	public static void main(String[] args) {
+		BankAccount buffaloSavings = new BankAccount();
+		buffaloSavings.deposit(3);
+		buffaloSavings.setOwner("Buffalo");
+
+		BankAccount buffaloSecretOffshore = new BankAccount();
+		buffaloSecretOffshore.deposit (100000000);
+		buffaloSecretOffshore.setOwner("Senor Buffalino");
+		
+		buffaloSavings.deposit(2.95);
+		
+		System.out.println(buffaloSavings.getBalance());
+		System.out.println(buffaloSecretOffshore.getBalance());
+	}
+	
+}

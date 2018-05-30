@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\EclipseWorkspaces\csse220\ArcadeGameProject"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\SampleExam2AndFinal.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\LinkedListSimpleSolution.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\SampleExam1.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\SuperSimpleObjectsSolution.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\ObjectIntroAndMiscPracticeSolution.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\IntroToJavaGraphicsSolution.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\ConsoleAndUnitTestingPracticeSolution.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\BiggestFanSolution.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\ArrayListPracticeSolution.zip"/>
+			<item value="C:\Users\Administrator\Documents\Classes\FR2\CSSE220\Solutions\JavaIntroSolution.zip"/>
+		</list>
+	</section>
+</section>

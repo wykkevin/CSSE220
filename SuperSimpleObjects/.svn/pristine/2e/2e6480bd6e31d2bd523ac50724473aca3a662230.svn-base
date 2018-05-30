@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class StudentAssignments {
+	private String name;
+	private ArrayList<String> stringArrayList = new ArrayList<String>();
+	private ArrayList<Double> doubleArrayList = new ArrayList<Double>();
+
+	public StudentAssignments(String name) {
+		this.name = name;
+		this.stringArrayList = new ArrayList<String>();
+		this.doubleArrayList = new ArrayList<Double>();
+	}
+
+	public StudentAssignments() {
+		this.name = "Studenty McStudenton";
+		this.stringArrayList = new ArrayList<String>();
+		this.doubleArrayList = new ArrayList<Double>();
+	}
+
+	public void addAssignment(String nameOfAssignment, double score) {
+		this.stringArrayList.add(nameOfAssignment);
+		this.doubleArrayList.add(score);
+	}
+
+	public void printGradeReport() {
+		System.out.println(this.name);
+		for (int i = 0; i < this.stringArrayList.size(); i++) {
+			System.out.println(this.stringArrayList.get(i) + " - " + this.doubleArrayList.get(i));
+		}
+	}
+	public void calculateAverage(){
+		double total=0;
+		for(int i = 0; i < this.doubleArrayList.size(); i++){
+			total=total+doubleArrayList.get(i);
+		}
+		System.out.println("The average score is:"+total/doubleArrayList.size());
+	}
+}

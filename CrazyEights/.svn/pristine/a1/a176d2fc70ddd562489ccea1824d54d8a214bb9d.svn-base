@@ -1,0 +1,11 @@
+import java.util.ArrayList;
+
+public class Player {
+
+	private ArrayList<String> cards;
+	private int playerIndex;
+	
+	public Player(int index){
+		this.playerIndex=index;
+	}
+}

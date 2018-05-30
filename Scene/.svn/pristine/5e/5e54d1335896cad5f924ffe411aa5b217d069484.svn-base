@@ -1,0 +1,52 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+public class Sun {
+	private static final Color BORDER_COLOR = Color.BLACK;
+	private static final int NUMBER_OF_RAYS = 8;
+	private static final double RAY_LENGTH_SCALE = 0.5;
+	private static final double RAY_WIDTH_SCALE = 0.1;
+	private static final double RAY_DISTANCE_FROM_SUN_SCALE = 0.2;
+	private static final double DEFAULT_SUN_DIAMETER = 100.0;
+	private static final double DEFAULT_SUN_X = 100.0;
+	private static final double DEFAULT_SUN_Y = 100.0;
+	private static final Color DEFAULT_SUN_COLOR = Color.YELLOW;
+	private static final double LITTLE_SUNS_X_OFFSET = 50;
+	private double x;// a double representing the x position of the upper left
+						// of the Sun's center circle
+	private double y;// a double representing the y position of the upper left
+						// of the Sun's center circle
+	private double circleDiameter;// diameter of the center circle of a Sun
+	private double rayLength; // the length of each ray of a Sun
+	private double rayWidth; // the width of each ray of a Sun
+	private double rayDistanceFromSun; // the distance from the center of the sun
+									// to the beginning of a ray
+	private Color color; // the fill color for the Sun
+
+	public Sun() {
+		this.x = 100.0;
+		this.y = 100.0;
+		this.circleDiameter = 100.0;
+		this.rayLength = 0.5;
+		this.rayWidth = 0.1;
+		this.rayDistanceFromSun = 0.2;
+		this.color = Color.YELLOW;
+	}
+	
+	public Sun(double x, double y, double circleDiameter,Color color){
+		this.x = x;
+		this.y = y;
+		this.circleDiameter = circleDiameter;
+		this.color = color;
+	}
+	
+	public void drawOn(Graphics2D g4) {
+		g4.setColor(BORDER_COLOR);
+		g4.drawOval((int)this.x, (int)this.y, (int)this.circleDiameter, (int)this.circleDiameter);
+		g4.setColor(this.color);
+		g4.fillOval((int)this.x, (int)this.y, (int)this.circleDiameter, (int)this.circleDiameter);
+		
+		
+	}
+	
+}

@@ -1,0 +1,31 @@
+package finalQuestion;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+public class FlashingRect extends IntersectingRect {
+
+	public FlashingRect(int x, int y) {
+		super(x, y);
+	}
+
+	@Override
+	public void drawOn(Graphics2D g) {
+		if (intersecting) {
+			g.setColor(Color.black);
+			g.draw(this.getShape());
+			while (true){
+				if (g.getColor()==Color.black){
+					g.setColor(Color.blue);
+					g.fill(this.getShape());
+				}else{
+					g.setColor(Color.black);
+					g.draw(this.getShape());
+				}
+			}
+		} else {
+			g.setColor(Color.blue);
+			g.fill(this.getShape());
+		}
+	}
+}

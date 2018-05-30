@@ -1,0 +1,14 @@
+
+public class PineTree {
+	private int height;
+	private int width;
+	private int x;
+	private int y;
+
+	public PineTree(int x, int y, int height, int width) {
+		this.x = x;
+		this.y = y;
+		this.height = height;
+		this.width = width;
+	}
+}

@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+public class Team {
+	private ArrayList<Student> students;
+	private String name;
+	
+	public Team(String name,ArrayList<Student> students){
+		this.name=name;
+		this.students=students;
+	}
+
+	public ArrayList<Student> getStudents() {
+		return this.students;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+	
+
+	
+	// You'll need to add methods, constructors and fields here
+	
+}

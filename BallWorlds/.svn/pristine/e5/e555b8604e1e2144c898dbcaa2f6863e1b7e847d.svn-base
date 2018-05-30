@@ -1,0 +1,31 @@
+package ballworlds;
+
+import java.awt.Color;
+
+public class Bouncer extends AbstractBouncer {
+
+	public Bouncer(BallEnvironment world) {
+		super(world);
+		this.radius = 20;
+	}
+
+	@Override
+	public Color getColor() {
+		return Color.orange;
+	}
+
+	@Override
+	public void updateSize() {
+		// Does nothing for bouncer
+	}
+
+	@Override
+	public void updateColor() {
+		// Does nothing for bouncer
+	}
+
+	@Override
+	public double getDiameter() {
+		return this.radius * 2;
+	}
+}

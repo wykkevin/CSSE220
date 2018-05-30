@@ -1,0 +1,47 @@
+package ballworlds;
+
+import java.awt.Color;
+import java.awt.geom.Point2D;
+
+import util.Random;
+
+public class Exploder extends AbstractBouncer {
+	private double targetSize = Random.randRange(10, 50);
+
+	public Exploder(BallEnvironment world) {
+		super(world);
+	}
+	
+	public Exploder(BallEnvironment world, double x, double y) {
+		super(world);
+		this.centerPoint = new Point2D.Double(x, y);
+	}
+
+	@Override
+	public Color getColor() {
+		return Color.yellow;
+	}
+
+	@Override
+	public void updateSize() {
+		this.radius = this.radius * 1.01;
+		if (this.radius >= this.targetSize) {
+			Exploder newExploder = new Exploder(this.getWorld(), this.x, this.y);
+			this.getWorld().addBall(newExploder);
+			this.getWorld().removeBall(this);
+		}
+
+	}
+
+	@Override
+	public void updateColor() {
+		// does nothing for exploder
+
+	}
+
+	@Override
+	public double getDiameter() {
+		return this.radius * 2;
+	}
+
+}

@@ -1,0 +1,97 @@
+package ballworlds;
+
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+
+import util.Random;
+
+public class Rectangle extends AbstractBouncer {
+
+	private double radius = 20;
+	private ArrayList<Color> colors;
+	private int colorIndex = 4;
+
+	public Rectangle(BallEnvironment world) {
+		super(world);
+		this.colors = new ArrayList<>();
+		this.colors.add(Color.pink);
+		this.colors.add(Color.orange);
+		this.colors.add(Color.magenta);
+		this.colors.add(Color.green);
+	}
+
+	@Override
+	public Shape getShape() {
+		double x = getCenterPoint().getX();
+		double y = getCenterPoint().getY();
+		double size = getDiameter();
+		return new Rectangle2D.Double(x - size / 2, y - size / 2, size, size);
+	}
+
+	@Override
+	public Color getColor() {
+		this.colorIndex = (this.colorIndex % this.colors.size());
+		this.colorIndex++;
+		return colors.get(this.colorIndex);
+	}
+
+	@Override
+	public void updatePosition() {
+		Point2D movingCenter = new Point2D.Double(this.getCenterPoint().getX() + this.xvelocity,
+				this.getCenterPoint().getY() + this.yvelocity);
+		this.setCenterPoint(movingCenter);
+		stayOnEdge();
+	}
+
+	@Override
+	public void updateSize() {
+		this.radius = Random.randInterval(5, 40);
+	}
+
+	@Override
+	public void updateColor() {
+	}
+
+	@Override
+	public double getDiameter() {
+		return 2 * this.radius;
+	}
+
+	public void stayOnEdge() {
+		// changes point interacting with edge to point edge of rectangle rather
+		// than center.
+		double edgeX = 0;
+		double edgeY = 0;
+		if (this.xvelocity > 0 && this.yvelocity > 0) {
+			edgeX = this.radius;
+			edgeY = this.radius;
+		} else if (this.xvelocity > 0) {
+			edgeX = this.radius;
+			edgeY = -this.radius;
+		} else if (this.yvelocity > 0) {
+			edgeX = -this.radius;
+			edgeY = this.radius;
+		} else {
+			edgeX = -this.radius;
+			edgeY = -this.radius;
+		}
+		// Pauses when reaches edge.
+		Point2D edgePoint = new Point2D.Double(this.getCenterPoint().getX() + edgeX,
+				this.getCenterPoint().getY() + edgeY);
+		if (!this.getWorld().isInsideWorldY(edgePoint) || !this.getWorld().isInsideWorldX(edgePoint)) {
+			this.setIsPaused(true);
+		}
+
+	}
+
+	@Override
+	public void setIsPaused(boolean isPaused) {
+		this.isPaused = isPaused;
+		if (!isPaused)
+			this.setVelocity();
+	}
+
+}

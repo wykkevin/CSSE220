@@ -1,0 +1,41 @@
+package finalQuestion;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+public class FlashingRect extends IntersectingRect implements Runnable {
+
+	private Graphics2D g2;
+	private IntersectingComponent component;
+
+	public FlashingRect(int x, int y, Graphics2D g2, IntersectingComponent component) {
+		super(x, y);
+		this.g2 = g2;
+		this.component = component;
+	}
+
+	public void changeColor() {
+		if (intersecting) {
+			g2.setColor(Color.black);
+			g2.draw(this.getShape());
+			while (g2.getColor() == Color.black) {
+				g2.setColor(Color.blue);
+				g2.fill(this.getShape());
+			}
+		}
+		System.out.println("changeColor");
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			changeColor();
+			component.repaint();
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

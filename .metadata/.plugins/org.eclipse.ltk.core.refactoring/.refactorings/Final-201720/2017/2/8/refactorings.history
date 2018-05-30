@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;rects&apos; in &apos;finalQuestion.IntersectingComponent&apos; to &apos;shapes&apos;&#x0D;&#x0A;- Original project: &apos;Final-201720&apos;&#x0D;&#x0A;- Original element: &apos;finalQuestion.IntersectingComponent.rects&apos;&#x0D;&#x0A;- Renamed element: &apos;finalQuestion.IntersectingComponent.shapes&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;rects&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;finalQuestion{IntersectingComponent.java[IntersectingComponent^rects" name="shapes" references="true" setter="false" stamp="1487863176229" textual="false" version="1.0"/>
+</session>

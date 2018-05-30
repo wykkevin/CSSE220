@@ -1,0 +1,70 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+public class Sun {
+	private static final Color BORDER_COLOR = Color.BLACK;
+	private static final int NUMBER_OF_RAYS = 8;
+	private static final double RAY_LENGTH_SCALE = 0.5;
+	private static final double RAY_WIDTH_SCALE = 0.1;
+	private static final double RAY_DISTANCE_FROM_SUN_SCALE = 0.2;
+	private static final double DEFAULT_SUN_DIAMETER = 100.0;
+	private static final double DEFAULT_SUN_X = 100.0;
+	private static final double DEFAULT_SUN_Y = 100.0;
+	private static final Color DEFAULT_SUN_COLOR = Color.YELLOW;
+	private static final double LITTLE_SUNS_X_OFFSET = 50;
+	private double x;// a double representing the x position of the upper left
+						// of the Sun's center circle
+	private double y;// a double representing the y position of the upper left
+						// of the Sun's center circle
+	private double circleDiameter;// diameter of the center circle of a Sun
+	private double rayLength; // the length of each ray of a Sun
+	private double rayWidth; // the width of each ray of a Sun
+	private double rayDistanceFromSun; // the distance from the center of the
+										// sun
+										// to the beginning of a ray
+	private Color color; // the fill color for the Sun
+
+	public Sun() {
+		this.x = DEFAULT_SUN_X;
+		this.y = DEFAULT_SUN_Y;
+		this.circleDiameter = DEFAULT_SUN_DIAMETER;
+		this.rayLength = DEFAULT_SUN_DIAMETER * RAY_LENGTH_SCALE;
+		this.rayWidth = DEFAULT_SUN_DIAMETER * RAY_WIDTH_SCALE;
+		this.rayDistanceFromSun = DEFAULT_SUN_DIAMETER * RAY_DISTANCE_FROM_SUN_SCALE;
+		this.color = DEFAULT_SUN_COLOR;
+	}
+
+	public Sun(double x, double y, double circleDiameter, Color color) {
+		this.x = x;
+		this.y = y;
+		this.circleDiameter = circleDiameter;
+		this.color = color;
+	}
+
+	public void drawOn(Graphics2D g4) {
+		g4.setColor(BORDER_COLOR);
+		g4.drawOval((int) this.x, (int) this.y, (int) this.circleDiameter, (int) this.circleDiameter);
+		g4.setColor(this.color);
+		g4.fillOval((int) this.x, (int) this.y, (int) this.circleDiameter, (int) this.circleDiameter);
+		Graphics2D ray2 = (Graphics2D) g4;
+
+		double angle = 2 * Math.PI / NUMBER_OF_RAYS;
+
+		g4.translate(0,
+				-(this.circleDiameter * (RAY_DISTANCE_FROM_SUN_SCALE)));
+		for (int i = 0; i < NUMBER_OF_RAYS; i++) {
+			g4.rotate(angle * i);
+			drawRay(g4, angle);
+			g4.rotate(-angle * i);
+		}
+		g4.translate(0,
+				this.circleDiameter * ( RAY_DISTANCE_FROM_SUN_SCALE));
+	}
+
+	public void drawRay(Graphics2D g4, double angle) {
+		g4.fillRect((int) (this.x + (this.circleDiameter - this.circleDiameter * RAY_WIDTH_SCALE) / 2),
+				(int) (this.y - this.circleDiameter * (RAY_LENGTH_SCALE + RAY_DISTANCE_FROM_SUN_SCALE)),
+				(int) (this.circleDiameter * RAY_WIDTH_SCALE), (int) (this.circleDiameter * RAY_LENGTH_SCALE));
+
+	}
+}

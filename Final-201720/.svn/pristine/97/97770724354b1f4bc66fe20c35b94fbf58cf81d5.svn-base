@@ -1,0 +1,104 @@
+package threading;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * 
+ * A class designed to startup some threads,
+ * and safely shutdown when they are complete.
+ *
+ * @author hewner.
+ *         Created Nov 14, 2016.
+ */
+public class StartupShutdown {
+
+	/**
+	 * You will likely need to add new fields to this class
+	 */
+	private int nextJobNum;
+	
+	/**
+	 * Constructor.  Modify this if you wish.
+	 */
+	public StartupShutdown() {
+		nextJobNum = 1;
+	}
+	
+	/** This function should start 1 job
+	 * 
+	 *  Right now it starts it and waits for it to finish.
+	 *  
+	 *  You should modify it so that it starts the job in its 
+	 *  own thread so that many jobs can run at the same 
+	 *  time.
+	 */
+	public void handleStartup() {
+		doAJob();
+	}
+	
+	/**
+	 * This function should wait for all currently running 
+	 * threads to finish, then exit.
+	 * 
+	 */
+	private void handleShutdown() {
+		
+		// This works without any changes when handleStart waits
+		// for a job to finish.  But once you make handleStart
+		// multithreaded you'll have to modify this.
+		
+		// Note that we want to exit immediately after all jobs finish,
+		// and the jobs take a unpredictable amount of time so don't do
+		// something so crude as just inserting a sleep in handleShutdown.
+		
+		// HINT: there's no problem calling join() on a thread
+		// that is already finished.  Join will just return 
+		// immediately if the thread is done.
+		
+		System.out.println("All jobs finished.  Exiting.");
+		System.exit(0);
+		
+	}
+
+	/**
+	 * Simulates doing a long calculation.
+	 * 
+	 * You can modify this function if you wish
+	 * but you probably shouldn't have to.
+	 */
+	public void doAJob() {
+		int myJobNum = nextJobNum;
+		nextJobNum++;
+		System.out.println("Starting Job " + myJobNum);
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e.toString());
+		}
+		System.out.println("Finishing Job " + myJobNum);
+	}
+
+	/**
+	 * Creates the class and handles user input.
+	 * 
+	 * You should not need to modify this function.
+	 * 
+	 * @param args
+	 * @throws InterruptedException 
+	 */
+	public static void main(String[] args) {
+		StartupShutdown handler = new StartupShutdown();
+		Scanner input = new Scanner(System.in);
+		System.out.println("Welcome to startup/shutdown.  Enter your commands.\n");
+		while(true) {
+			String currentCommand = input.next();
+			if(currentCommand.equals("startup")) {
+				handler.handleStartup();
+			}
+			if(currentCommand.equals("shutdown")) {
+				handler.handleShutdown();
+			}
+		}
+	}
+}

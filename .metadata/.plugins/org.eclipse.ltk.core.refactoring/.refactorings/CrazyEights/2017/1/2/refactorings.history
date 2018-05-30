@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;turnOfPlayer&apos; in &apos;CrazyEights&apos; to &apos;turnIndex&apos;&#x0D;&#x0A;- Original project: &apos;CrazyEights&apos;&#x0D;&#x0A;- Original element: &apos;CrazyEights.turnOfPlayer&apos;&#x0D;&#x0A;- Renamed element: &apos;CrazyEights.turnIndex&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;turnOfPlayer&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;{CrazyEights.java[CrazyEights^turnOfPlayer" name="turnIndex" references="true" setter="false" stamp="1483909207957" textual="false" version="1.0"/>
+</session>

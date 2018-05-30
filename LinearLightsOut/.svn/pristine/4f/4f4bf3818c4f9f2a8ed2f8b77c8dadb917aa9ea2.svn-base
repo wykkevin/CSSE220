@@ -1,0 +1,20 @@
+package linearLightsOut;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+public class QuitActionListener implements ActionListener {
+	private JFrame frame;
+
+	public QuitActionListener(JFrame myFrame) {
+		this.frame = myFrame;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		System.exit(0);
+	}
+
+}

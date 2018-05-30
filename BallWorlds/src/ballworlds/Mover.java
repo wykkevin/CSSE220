@@ -1,0 +1,65 @@
+package ballworlds;
+
+import java.awt.Color;
+import java.awt.geom.Point2D;
+
+import util.Random;
+
+/**
+ * 
+ * A Mover should start in the exact middle of its world (regardless of its
+ * world’s size). Each Mover should have its own fixed velocity that is set at
+ * random when the Mover is constructed. The random velocity should be in any
+ * reasonable range that includes all directions (not just the “positive”
+ * direction).
+ *
+ * @author Emma Oswood, Yuankai Wang. Created Jan 19, 2017.
+ */
+
+public class Mover extends Ball {
+
+	private double xvelocity;
+	private double yvelocity;
+
+	public Mover(BallEnvironment world) {
+		super(world);
+		// set initial position to the center of the world
+		Point2D centerPoint = new Point2D.Double(this.getWorld().getSize().getWidth() / 2,
+				this.getWorld().getSize().getHeight() / 2);
+		this.setCenterPoint(centerPoint);
+		// set initial velocities and let them be not 0 at the same time.
+		this.xvelocity = Random.randRange(-500, 500) / 100;
+		this.yvelocity = Random.randRange(-500, 500) / 100;
+		while (this.xvelocity == 0 && this.yvelocity == 0) {
+			this.xvelocity = Random.randRange(-500, 500) / 100;
+			this.yvelocity = Random.randRange(-500, 500) / 100;
+		}
+	}
+
+	@Override
+	public Color getColor() {
+		return Color.GREEN;
+	}
+
+	@Override
+	public void updatePosition() {
+		Point2D movingCenter = new Point2D.Double(this.getCenterPoint().getX() + this.xvelocity,
+				this.getCenterPoint().getY() + this.yvelocity);
+		this.setCenterPoint(movingCenter);
+	}
+
+	@Override
+	public void updateSize() {
+		// Does nothing for mover
+	}
+
+	@Override
+	public void updateColor() {
+		// Does nothing for mover
+	}
+
+	@Override
+	public double getDiameter() {
+		return 40;
+	}
+}

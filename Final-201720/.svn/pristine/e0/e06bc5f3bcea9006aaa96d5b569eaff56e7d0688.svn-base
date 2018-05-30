@@ -1,0 +1,66 @@
+package finalQuestion;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+/**
+ * Basic viewer classes.
+ * 
+ * Feel free to modify this class
+ * 
+ * @author hewner
+ *
+ */
+public class Main {
+
+	private static final Dimension FRAME_SIZE = new Dimension(640, 480);
+
+	public void showWindow() {
+		JFrame frame = new JFrame();
+
+		frame.setTitle("Final Question");
+
+		final IntersectingComponent bars = new IntersectingComponent(frame);
+		bars.setPreferredSize(FRAME_SIZE);
+
+		frame.add(bars);
+		
+		JButton clearButton = new JButton("Clear");
+		frame.add(clearButton, BorderLayout.SOUTH);
+		clearButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				bars.setShapes(new ArrayList<IntersectingShape>());
+				bars.repaint();
+			}
+
+		});
+		
+		frame.pack();
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+
+	}
+
+	/**
+	 * The main - creates the window.
+	 * 
+	 * @param args
+	 *            ignored
+	 */
+	public static void main(String[] args) {
+		// making an instance so it is easier
+		// to use inner classes
+		Main mainObject = new Main();
+		mainObject.showWindow();
+	}
+
+}

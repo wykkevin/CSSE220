@@ -1,0 +1,21 @@
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JComponent;
+
+public class SceneComponent extends JComponent {
+	/**
+	 * Draws Scene.
+	 */
+	@Override
+	protected void paintComponent(Graphics graphics) {
+		super.paintComponent(graphics);
+		Graphics2D graphics2 = (Graphics2D) graphics;
+		
+		graphics2.setColor(Color.blue);
+		graphics2.fillRect(0, 0, 750, 375);
+		graphics2.setColor(Color.green);
+		graphics2.fillRect(0, 375, 750, 225);
+}
+}

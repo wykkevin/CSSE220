@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;color&apos; in &apos;ballworlds.Pulsar&apos; to &apos;colorNumber&apos;&#x0D;&#x0A;- Original project: &apos;BallWorlds&apos;&#x0D;&#x0A;- Original element: &apos;ballworlds.Pulsar.color&apos;&#x0D;&#x0A;- Renamed element: &apos;ballworlds.Pulsar.colorNumber&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;color&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;ballworlds{Pulsar.java[Pulsar^color" name="colorNumber" references="true" setter="false" stamp="1484951199844" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+public class Player {
+
+	private ArrayList<String> cards;
+
+	public Player() {
+		this.cards = new ArrayList<String>();
+	}
+
+	public void drawCard(String card) {
+		this.cards.add(card);
+	}
+
+	public ArrayList<String> getCards() {
+		return this.cards;
+	}
+
+	public void removeCard(String card) {
+		this.cards.remove(card);
+	}
+}

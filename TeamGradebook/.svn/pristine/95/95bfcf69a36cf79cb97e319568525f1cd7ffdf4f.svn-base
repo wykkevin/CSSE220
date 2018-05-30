@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+
+public class Student {
+	private String name;
+	private double totalGrade;
+	private int numberOfGrades;
+	private ArrayList<Double> grades;
+
+	//TODO: You'll probably need to have some more fields here
+	
+	/**
+	 * makes a new student object
+	 * 
+	 * @param newName the name of the student
+	 */
+
+	public Student(String newName) {
+		//TODO: initialize fields here
+		this.name=newName;
+		this.totalGrade=0;
+		this.numberOfGrades=0;
+		this.grades=new ArrayList<Double>();
+
+	}
+
+	public double getTotalGrade() {
+		return this.totalGrade;
+	}
+
+	public void setTotalGrade(double totalGrade) {
+		this.totalGrade = totalGrade;
+	}
+
+	public int getNumberOfGrades() {
+		return this.numberOfGrades;
+	}
+
+	public void setNumberOfGrades(int numberOfGrades) {
+		this.numberOfGrades = numberOfGrades;
+	}
+
+	/**
+	 * gets the name of the student
+	 * 
+	 * @return the name of the student
+	 */
+	public String getName() {
+		
+		// TODO your code here
+		return this.name;
+	}
+	
+	public void setGrade(ArrayList<Double> grades){
+		this.grades=grades;
+	}
+	
+	public void addGrade(double grade){
+		this.grades.add(grade);
+	}
+	
+	public ArrayList<Double> getGrades() {
+		return this.grades;
+	}
+	
+
+	
+	//TODO: You'll need to add some new methods here
+}

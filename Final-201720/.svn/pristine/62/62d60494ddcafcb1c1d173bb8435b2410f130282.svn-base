@@ -1,0 +1,101 @@
+package finalQuestion;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+/**
+ * Component where drawing is done.
+ * 
+ * Feel free to change this class however you want
+ * 
+ * @author hewner
+ *
+ */
+@SuppressWarnings("serial")
+public class IntersectingComponent extends JComponent implements MouseListener {
+
+	private ArrayList<IntersectingShape> shapes;
+	private ArrayList<FlashingRect> flashes;
+	private Graphics2D g2;
+
+	/**
+	 * Makes the component and creates rectangles.
+	 * 
+	 * @param frame
+	 *            passed in so you can add buttons
+	 */
+	public IntersectingComponent(JFrame frame) {
+		shapes = new ArrayList<IntersectingShape>();
+		shapes.add(new IntersectingRect(200, 200));
+		shapes.add(new IntersectingRect(400, 350));
+		shapes.add(new IntersectingRect(300, 300));
+		shapes.add(new IntersectingRect(350, 275));
+
+		addMouseListener(this);
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		this.g2 = (Graphics2D) g;
+
+		for (IntersectingShape r : shapes) {
+			for (IntersectingShape other : shapes) {
+				r.checkIntersectionsWith(other);
+			}
+			r.drawOn(g2);
+		}
+		this.repaint();
+	}
+
+	public ArrayList<IntersectingShape> getShapes() {
+		return this.shapes;
+	}
+
+	public void setShapes(ArrayList<IntersectingShape> rects) {
+		this.shapes = rects;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.isShiftDown()) {
+			this.shapes.add(new IntersectingEllipse(e.getX(), e.getY()));
+		} else if (e.isControlDown()) {
+			FlashingRect rect = new FlashingRect(e.getX(), e.getY(), this.g2, this);
+			this.shapes.add(rect);
+			Thread t = new Thread(rect);
+			t.start();
+		} else {
+			this.shapes.add(new IntersectingRect(e.getX(), e.getY()));
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+}

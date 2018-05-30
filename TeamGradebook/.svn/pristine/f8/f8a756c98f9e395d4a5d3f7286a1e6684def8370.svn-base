@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+
+public class Team {
+	private ArrayList<Student> students;
+	private String name;
+	
+	public Team(String name,ArrayList<Student> students){
+		this.name=name;
+		this.students=students;
+	}
+
+	public ArrayList<Student> getStudents() {
+		return this.students;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setStudents(ArrayList<Student> students) {
+		this.students = students;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setGrade(double grade){
+		for(Student student:this.students){
+			student.addGrade(grade);
+		}
+	}
+
+	
+	// You'll need to add methods, constructors and fields here
+	
+}

@@ -1,0 +1,93 @@
+package finalQuestion;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+/**
+ * Component where drawing is done.
+ * 
+ * Feel free to change this class however you want
+ * 
+ * @author hewner
+ *
+ */
+@SuppressWarnings("serial")
+public class IntersectingComponent extends JComponent implements MouseListener {
+
+	private ArrayList<IntersectingRect> rects;
+
+	/**
+	 * Makes the component and creates rectangles.
+	 * 
+	 * @param frame
+	 *            passed in so you can add buttons
+	 */
+	public IntersectingComponent(JFrame frame) {
+		rects = new ArrayList<IntersectingRect>();
+		rects.add(new IntersectingRect(200, 200));
+		rects.add(new IntersectingRect(400, 350));
+		rects.add(new IntersectingRect(300, 300));
+		rects.add(new IntersectingRect(350, 275));
+
+		addMouseListener(this);
+
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+
+		for (IntersectingRect r : rects) {
+			for (IntersectingRect other : rects) {
+				r.checkIntersectionsWith(other);
+			}
+			r.drawOn(g2);
+
+		}
+		this.repaint();
+	}
+
+	public ArrayList<IntersectingRect> getRects() {
+		return this.rects;
+	}
+
+	public void setRects(ArrayList<IntersectingRect> rects) {
+		this.rects = rects;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		this.rects.add(new IntersectingRect(e.getX(), e.getY()));
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub.
+
+	}
+
+}

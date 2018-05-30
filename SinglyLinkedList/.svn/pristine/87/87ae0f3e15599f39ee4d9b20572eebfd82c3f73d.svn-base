@@ -1,0 +1,281 @@
+package sll;
+
+import java.util.NoSuchElementException;
+
+/**
+ * This class provides a basic implementation of a singly linked list. It's
+ * motivated by the implementation in Big Java, 5e, ch. 16.1.
+ * 
+ * @author Yuankai Wang on 02/01/2017.
+ * @param <T>
+ *            The type of elements in the list
+ */
+public class LinkedList<T> implements List<T>, Iterable<T> {
+
+	private ListNode<T> first;
+	// Note that in addition to a head (first) pointer
+	// this list contains a last pointer. Be sure to
+	// BOTH first and last up to date in all your code.
+	private ListNode<T> last;
+
+	/**
+	 * Constructs a new, empty linked list.
+	 */
+	public LinkedList() {
+		this.first = null;
+		this.last = null;
+	}
+
+	@Override
+	public String toString() {
+		if (this.first == null) {
+			return "[]";
+		}
+		String result = "[";
+		ListNode<T> current = this.first;
+		while (current != this.last) {
+			result += (current.getElement() + ", ");
+			current = current.getNext();
+		}
+		return result + current.getElement() + "]";
+	}
+
+	@Override
+	public boolean add(T x) {
+		// DONE 01 Implement the add(T x) method.
+		ListNode<T> current = this.first;
+		ListNode<T> newT = new ListNode<T>();
+		newT.setElement(x);
+		if (this.first == null) {
+			this.first = newT;
+			this.last = newT;
+			return true;
+		}
+		this.last.setNext(newT);
+		this.last = newT;
+		return true;
+	}
+
+	@Override
+	public int size() {
+		// DONE 02 Implement the size() method.
+		ListNode<T> current = this.first;
+		if (this.first == null) {
+			return 0;
+		}
+		int num = 0;
+		while (current.getNext() != null) {
+			current = current.getNext();
+			num++;
+		}
+		return num + 1;
+	}
+
+	@Override
+	public void add(int i, T x) throws IndexOutOfBoundsException {
+		// DONE 03 Implement the add(int i, T x) method.
+		// Note that this adds at the specific index
+		ListNode<T> current = this.first;
+		ListNode<T> newT = new ListNode<T>();
+		newT.setElement(x);
+		int index = 0;
+		if (i > size()) {
+			throw new IndexOutOfBoundsException("");
+		}
+		if (i == 0) {
+			if (this.first != null) {
+				newT.setNext(current);
+				this.first = newT;
+			} else {
+				this.first = newT;
+				this.last = newT;
+			}
+			return;
+		}
+		if (i == size()) {
+			add(x);
+			this.last = newT;
+		}
+		while (index < i - 1) {
+			current = current.getNext();
+			index++;
+		}
+		newT.setNext(current.getNext());
+		current.setNext(newT);
+	}
+
+	@Override
+	public boolean contains(T x) {
+		// DONE 04 Implement the contains(T x) method.
+		if (size() == 0) {
+			return false;
+		}
+		ListNode<T> current = this.first;
+		boolean containX = false;
+		if (this.last.getElement() == x) {
+			containX = true;
+		}
+		while (current.getNext() != null) {
+			if (current.getElement() == x) {
+				containX = true;
+			}
+			current = current.getNext();
+		}
+		return containX;
+	}
+
+	@Override
+	public boolean remove(T x) {
+		// DONE 05 Implement the remove(T x) method.
+		if (contains(x) == false) {
+			return false;
+		}
+		if (this.first.getElement() == x) {
+			this.first = this.first.getNext();
+			return true;
+		}
+		ListNode<T> current = this.first;
+		while (current.getNext().getNext() != null) {
+			ListNode<T> nNCurrent = current.getNext().getNext();
+			if (current.getNext().getElement() == x) {
+				current.setNext(null);
+				current.setNext(nNCurrent);
+				return true;
+			}
+			current = current.getNext();
+		}
+		if (this.last.getElement() == x) {
+			current.setNext(null);
+			return true;
+		}
+		return true;
+	}
+
+	@Override
+	public T get(int index) throws IndexOutOfBoundsException {
+		// DONE 06 Implement the get(int index) method.
+		ListNode<T> current = this.first;
+		int num = 0;
+		boolean hasX = false;
+		if (size() == 0) {
+			throw new IndexOutOfBoundsException("Unexpected IndexOutOfBoundsException");
+		}
+		while (current.getNext() != null) {
+			if (num == index) {
+				hasX = true;
+				return current.getElement();
+			}
+			current = current.getNext();
+			num++;
+		}
+		if (hasX == false) {
+			throw new IndexOutOfBoundsException("Unexpected IndexOutOfBoundsException");
+		}
+		return null;
+	}
+
+	@Override
+	public int indexOf(T x) {
+		// DONE 07 Implement the indexOf(T x) method.
+		if (contains(x) == false) {
+			return -1;
+		}
+		ListNode<T> current = this.first;
+		int index = 0;
+		while (current.getNext() != null) {
+			if (current.getElement() == x) {
+				return index;
+			}
+			current = current.getNext();
+			index++;
+		}
+		return -1;
+	}
+
+	@Override
+	public T set(int index, T element) throws IndexOutOfBoundsException {
+		// DONE 08 Implement the set(int index, T element) method.
+		ListNode<T> current = this.first;
+		int num = 0;
+		if (size() == 0) {
+			throw new IndexOutOfBoundsException("Unexpected IndexOutOfBoundsException");
+		}
+		while (current.getNext() != null) {
+			if (num == index) {
+				T previousElement = current.getElement();
+				current.setElement(element);
+				return previousElement;
+			}
+			current = current.getNext();
+			num++;
+		}
+		return get(index);
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new LinkedListIterator();
+	}
+
+	/**
+	 * This is an iterator over this list.
+	 * 
+	 * @author Yuankai Wang on 02/02/2017.
+	 */
+	private class LinkedListIterator implements Iterator<T> {
+
+		private ListNode<T> current, previous;
+
+		private LinkedListIterator() {
+			this.current = null;
+			this.previous = null;
+		}
+
+		@Override
+		public boolean hasNext() {
+			// TODO 09 Implement the hasNext() method.
+			ListNode<T> tempEle = new ListNode<T>();
+			ListNode<T> giveEle = new ListNode<T>();
+			ListNode<T> tempCurrent = new ListNode<T>();
+			giveEle=LinkedList.this.first;
+			tempEle.setElement(giveEle.getElement());
+			this.current = tempEle;
+			tempCurrent=this.current;
+			for (int i = 0; i < size()-1; i++) {
+				giveEle=giveEle.getNext();
+				this.current.setNext(giveEle);
+				
+			}
+//			while (this.current.getNext()!=null){
+//				System.out.println(this.current.getNext().getElement());
+//			}
+			if (this.current.getNext() != null) {
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public T next() throws NoSuchElementException {
+			// TODO 10 Implement the next() method.
+			if (size() == 0) {
+				throw new NoSuchElementException("Unexpected NoSuchElementException");
+			}
+			if (hasNext() == false) {
+				throw new NoSuchElementException("Unexpected NoSuchElementException");
+			}
+			ListNode<T> output = new ListNode<T>();
+			output = this.current;
+			this.previous = this.current;
+			this.current = this.current.getNext();
+			return output.getElement();
+		}
+
+		@Override
+		public void remove() {
+			// TODO 11 Implement the remove() method.
+			this.previous=this.current;
+		}
+	}
+
+}
